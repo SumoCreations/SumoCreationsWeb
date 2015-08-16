@@ -1,0 +1,35 @@
+{
+  "name": "sumo-creations-web",
+  "version": "1.0.0",
+  "description": "The official website for Sumo Creations LLC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SumoCreations/SumoCreationsWeb.git"
+  },
+  "keywords": [
+    "sumo",
+    "creations",
+    "web",
+    "react",
+    "node",
+    "marketing"
+  ],
+  "author": "Jim Jeffers",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/SumoCreations/SumoCreationsWeb/issues"
+  },
+  "homepage": "https://github.com/SumoCreations/SumoCreationsWeb#readme",
+  "dependencies": {
+    "axios": "^0.5.4",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "webpack": "^1.11.0"
+  }
+}
