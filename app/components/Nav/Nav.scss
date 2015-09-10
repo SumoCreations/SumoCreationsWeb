@@ -1,0 +1,110 @@
+@import '../../config/skeleton.scss';
+
+$nav-padding: 30px;
+$nav-handle-width: 28px;
+$nav-handle-height: 3px;
+
+.nav {
+  display: block;
+  position: absolute;
+  top: $nav-padding;
+  left: $nav-padding;
+  right: $nav-padding;
+
+  .nav-logo {
+    content: url("./Nav/SumoCreationsLogo.svg");
+    display: block;
+    height: 79px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 131px;
+  }
+
+  .nav-toggle {
+    display: flex;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    top: 0;
+  }
+
+  .nav-button {
+    border: none;
+    color: $link-color;
+    font-weight: 200;
+    flex: 1 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-button-text {
+    opacity: 1;
+    -webkit-transition: opacity 0.25s;
+    transition: opacity 0.25s;
+  }
+  .nav-handle {
+    margin-left: 10px;
+
+    span {
+      display: block;
+      height: $nav-handle-height;
+      -webkit-transition: opacity 0.25s;
+      transition: opacity 0.25s;
+      width: $nav-handle-width;
+    }
+
+    &::before,
+    &::after,
+    span {
+      background: $link-color;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      margin-top: -$nav-handle-height/2;
+      height: $nav-handle-height;
+      width: $nav-handle-width;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      -webkit-transition: -webkit-transform 0.25s;
+      transition: transform 0.25s;
+      top: 50%;
+    }
+
+    &::before {
+      transform: translate(0, -10px);
+      -webkit-transform: translate3d(0, -8px, 0);
+    }
+
+    &::after {
+      transform: translate(10px);
+      -webkit-transform: translate3d(0, 8px, 0);
+    }
+  }
+
+  .nav-active {
+    .nav-button-text {
+      opacity: 0;
+    }
+
+    .nav-handle {
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+
+      & span {
+        opacity: 0;
+      }
+    }
+  }
+
+}

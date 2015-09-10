@@ -1,21 +1,32 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
+import Nav from './Nav/Nav';
+import { connect } from 'react-redux';
+import { setNavigationState } from '../config/actions';
 
 require('./Main.scss');
 
-export default class Main extends React.Component {
+class Main extends React.Component {
   render() {
+    const { dispatch, navigationState } = this.props;
+    console.log(navigationState);
     return (
-      <div className="container">
-        <nav className="navbar row" role="navigation">
-          <div className="seven columns" style={{marginTop: 15}}>
-            Add a nav!
+      <div className="main">
+        <Nav onMenuToggle={() => dispatch(setNavigationState(!navigationState))} active={navigationState}/>
+        <div className="container">
+          <div className="row contents">
+            <RouteHandler {...this.props}/>
           </div>
-        </nav>
-        <div className="row contents">
-          <RouteHandler {...this.props}/>
         </div>
       </div>
     )
   }
-};
+}
+
+function select(state) {
+  return {
+    navigationState: state.navigationState
+  };
+}
+
+export default connect(select)(Main);
