@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Isvg from 'react-inlinesvg';
 
 export default class Nav extends Component {
   constructor(props){
@@ -9,10 +10,15 @@ export default class Nav extends Component {
     if(this.props.active){ styles.push('nav-active'); }
     return styles.join(" ");
   }
+  logoSVG() {
+    return require('./SumoCreationsLogo.svg');
+  }
   render() {
     return (
       <nav className="nav" role="navigation">
-          <img className="nav-logo" />
+          <Isvg src={this.logoSVG()}>
+            <img className="nav-logo" src={this.logoSVG()} />
+          </Isvg>
           <div className={this.navStyles()}>
             <button className="nav-button nav-button-text" onClick={() => this.props.onMenuToggle()}>Menu</button>
             <button className="nav-button nav-handle" onClick={() => this.props.onMenuToggle()}><span></span></button>

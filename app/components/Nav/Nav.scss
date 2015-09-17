@@ -1,4 +1,5 @@
 @import '../../config/skeleton.scss';
+@import 'bourbon';
 
 $nav-padding: 30px;
 $nav-handle-width: 28px;
@@ -34,31 +35,38 @@ $nav-handle-height: 3px;
     border: none;
     color: $link-color;
     font-weight: 200;
-    flex: 1 100%;
     padding: 0;
     margin: 0;
   }
 
   .nav-button-text {
     opacity: 1;
-    -webkit-transition: opacity 0.25s;
-    transition: opacity 0.25s;
+    @include transition(opacity 0.25s);
+    @include selection(true) {
+      background-color: rgba(0,0,0,0);
+    }
   }
   .nav-handle {
-    margin-left: 10px;
-
-    span {
-      display: block;
-      height: $nav-handle-height;
-      -webkit-transition: opacity 0.25s;
-      transition: opacity 0.25s;
-      width: $nav-handle-width;
-    }
+    margin: 0 0 0 10px;;
+    width: $nav-handle-width;
+    height: 30px;
 
     &::before,
     &::after,
     span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0;
       background: $link-color;
+      margin-top: -$nav-handle-height/2;
+      @include transform-origin(50% 50%);
+      width: $nav-handle-width;
+      height: $nav-handle-height;
+    }
+
+    span {
+      @include transition(opacity 0.25s);
     }
 
     &::before,
@@ -66,24 +74,21 @@ $nav-handle-height: 3px;
       position: absolute;
       content: '';
       display: block;
-      margin-top: -$nav-handle-height/2;
       height: $nav-handle-height;
       width: $nav-handle-width;
-      -webkit-transform-origin: 50% 50%;
-      transform-origin: 50% 50%;
-      -webkit-transition: -webkit-transform 0.25s;
-      transition: transform 0.25s;
       top: 50%;
+      @include transform-origin(50% 50%);
+      @include transition-property(transform);
+      @include transition-duration(0.25s);
+      @include transition-timing-function(ease-out);
     }
 
     &::before {
-      transform: translate(0, -10px);
-      -webkit-transform: translate3d(0, -8px, 0);
+      @include transform(translate(0, -8px));
     }
 
     &::after {
-      transform: translate(10px);
-      -webkit-transform: translate3d(0, 8px, 0);
+      @include transform(translate(0, 8px));
     }
   }
 
@@ -94,11 +99,11 @@ $nav-handle-height: 3px;
 
     .nav-handle {
       &::before {
-        transform: rotate(45deg);
+        @include transform(rotate(45deg));
       }
 
       &::after {
-        transform: rotate(-45deg);
+        @include transform(rotate(-45deg));
       }
 
       & span {
