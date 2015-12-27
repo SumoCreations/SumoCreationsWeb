@@ -11,9 +11,10 @@ $nav-handle-height: 3px;
   top: $nav-padding;
   left: $nav-padding;
   right: $nav-padding;
+  z-index: 1;
 
   .nav-logo {
-    content: url("./Nav/SumoCreationsLogo.svg");
+    content: url("./SumoCreationsLogo.svg");
     display: block;
     height: 79px;
     left: 0;

@@ -3,17 +3,20 @@ var webpack = require('webpack');
 var bourbon = require('bourbon').includePaths;
 
 var config = {
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    './app/App.js' // Your appʼs entry point
+    'webpack-hot-middleware/client',
+    './app/App.js'
   ],
   output: {
     path: path.join(__dirname, 'public'),
     publicPath: '/static', // This is used to generate URLs to e.g. images
     filename: 'bundle.js'
   },
-  devtool: 'eval',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
   module: {
     loaders: [
     // Images
@@ -23,8 +26,8 @@ var config = {
     },
     // JSX
     {
-      test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel'],
+      test: /\.js$/,
+      loaders: ['babel'],
       exclude: /(node_modules|bower_components)/
     },
     // SASS
@@ -33,9 +36,6 @@ var config = {
       loader: "style!css!sass?includePaths[]="+bourbon
     }]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
 };
 
 module.exports = config;

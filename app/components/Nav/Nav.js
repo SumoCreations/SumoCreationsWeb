@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
 import Isvg from 'react-inlinesvg';
+
+require('./Nav.scss');
 
 export default class Nav extends Component {
   constructor(props){
@@ -8,7 +11,7 @@ export default class Nav extends Component {
   navStyles() {
     var styles = ['nav-toggle'];
     if(this.props.active){ styles.push('nav-active'); }
-    return styles.join(" ");
+    return styles.join(' ');
   }
   logoSVG() {
     return require('./SumoCreationsLogo.svg');

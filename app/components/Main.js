@@ -1,23 +1,19 @@
-import React from 'react';
-import { RouteHandler } from 'react-router';
+import GSAP from 'gsap';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import Nav from './Nav/Nav';
 import { connect } from 'react-redux';
 import { setNavigationState } from '../config/actions';
 
 require('./Main.scss');
 
-class Main extends React.Component {
+class Main extends Component {
   render() {
     const { dispatch, navigationState } = this.props;
-    console.log(navigationState);
     return (
       <div className="main">
         <Nav onMenuToggle={() => dispatch(setNavigationState(!navigationState))} active={navigationState}/>
-        <div className="container">
-          <div className="row contents">
-            <RouteHandler {...this.props}/>
-          </div>
-        </div>
+        {this.props.children}
       </div>
     )
   }

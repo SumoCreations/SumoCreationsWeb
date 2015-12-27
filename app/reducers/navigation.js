@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux';
-import { SET_NAVIGATION_STATE, NavigationStates } from './actions';
+import { SET_NAVIGATION_STATE, NavigationStates } from '../config/actions';
 
 const { INACTIVE } = NavigationStates;
 
@@ -12,8 +11,4 @@ function navigationState(state = INACTIVE, action) {
   }
 }
 
-const sumoApp = combineReducers({
-  navigationState
-});
-
-export default sumoApp;
+module.exports = navigationState;
