@@ -1,16 +1,12 @@
 @import '../../config/skeleton.scss';
-@import 'bourbon';
 
 $nav-padding: 30px;
-$nav-handle-width: 28px;
-$nav-handle-height: 3px;
 
 .nav {
   display: block;
   position: absolute;
   top: $nav-padding;
   left: $nav-padding;
-  right: $nav-padding;
   z-index: 1;
 
   .nav-logo {
@@ -22,95 +18,4 @@ $nav-handle-height: 3px;
     top: 0;
     width: 131px;
   }
-
-  .nav-toggle {
-    display: flex;
-    position: absolute;
-    right: 0;
-    text-transform: uppercase;
-    text-decoration: none;
-    top: 0;
-  }
-
-  .nav-button {
-    border: none;
-    color: $link-color;
-    font-weight: 200;
-    padding: 0;
-    margin: 0;
-  }
-
-  .nav-button-text {
-    opacity: 1;
-    @include transition(opacity 0.25s);
-    @include selection(true) {
-      background-color: rgba(0,0,0,0);
-    }
-  }
-  .nav-handle {
-    margin: 0 0 0 10px;;
-    width: $nav-handle-width;
-    height: 30px;
-
-    &::before,
-    &::after,
-    span {
-      display: block;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      background: $link-color;
-      margin-top: -$nav-handle-height/2;
-      @include transform-origin(50% 50%);
-      width: $nav-handle-width;
-      height: $nav-handle-height;
-    }
-
-    span {
-      @include transition(opacity 0.25s);
-    }
-
-    &::before,
-    &::after {
-      position: absolute;
-      content: '';
-      display: block;
-      height: $nav-handle-height;
-      width: $nav-handle-width;
-      top: 50%;
-      @include transform-origin(50% 50%);
-      @include transition-property(transform);
-      @include transition-duration(0.25s);
-      @include transition-timing-function(ease-out);
-    }
-
-    &::before {
-      @include transform(translate(0, -8px));
-    }
-
-    &::after {
-      @include transform(translate(0, 8px));
-    }
-  }
-
-  .nav-active {
-    .nav-button-text {
-      opacity: 0;
-    }
-
-    .nav-handle {
-      &::before {
-        @include transform(rotate(45deg));
-      }
-
-      &::after {
-        @include transform(rotate(-45deg));
-      }
-
-      & span {
-        opacity: 0;
-      }
-    }
-  }
-
 }

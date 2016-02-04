@@ -1,9 +1,10 @@
-import GSAP from 'gsap';
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Nav from './Nav/Nav';
-import { connect } from 'react-redux';
-import { setNavigationState } from '../config/actions';
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { connect } from 'react-redux'
+import { setNavigationState } from '../config/actions'
+
+import Nav from './Nav/Nav'
+import SideBar from './Nav/SideBar'
 
 require('./Main.scss');
 
@@ -12,7 +13,8 @@ class Main extends Component {
     const { dispatch, navigationState } = this.props;
     return (
       <div className="main">
-        <Nav onMenuToggle={() => dispatch(setNavigationState(!navigationState))} active={navigationState}/>
+        <Nav />
+        <SideBar active={this.props.active} onMenuToggle={() => dispatch(setNavigationState(!navigationState))} active={navigationState} />
         {this.props.children}
       </div>
     )
