@@ -32,7 +32,7 @@ class SideBar extends Component {
   }
 
   navStyles() {
-    var styles = ['nav-toggle']
+    var styles = ['nav-toggle', 'col-md-4']
     if(this.props.active){
       styles.push('nav-active')
     }

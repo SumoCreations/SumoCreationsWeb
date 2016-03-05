@@ -13,7 +13,7 @@ export default class Nav extends Component {
   }
   render() {
     return (
-      <nav className="nav" role="navigation">
+      <nav className="nav col-md-4" role="navigation">
         <Isvg src={this.logoSVG()}>
           <img className="nav-logo" src={this.logoSVG()} />
         </Isvg>
