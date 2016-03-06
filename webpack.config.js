@@ -1,9 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-var bourbon = require('bourbon').includePaths;
+var autoprefixer = require('autoprefixer');
 
 var config = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
     'bootstrap-loader',
@@ -20,23 +20,14 @@ var config = {
   ],
   module: {
     loaders: [
-    // Images
-    {
-      test: /\.(png|jpg|svg)$/,
-      loader: 'url-loader?limit=8192' // inline base64 URLs for <=8k images, direct URLs for the rest
-    },
-    // JSX
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /(node_modules|bower_components)/
-    },
-    // SASS
-    {
-      test: /\.scss$/,
-      loader: "style!css!sass?includePaths[]="+bourbon
-    }]
+      { test: /\.(png|jpg|svg)$/, loader: 'url-loader?limit=8192'},
+      { test: /\.js$/, loaders: ['babel'], exclude: /(node_modules|bower_components)/},
+      { test: /\.css$/, loaders: [ 'style', 'css', 'postcss' ] },
+      { test: /\.scss$/, loaders: [ 'style', 'css', 'postcss', 'sass', 'sass-resources' ] },
+    ]
   },
+  postcss: [ autoprefixer ],
+  sassResources: './app/config/sass-resources.scss',
 };
 
 module.exports = config;

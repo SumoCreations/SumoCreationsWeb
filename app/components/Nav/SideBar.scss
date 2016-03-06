@@ -1,19 +1,27 @@
-@import '../../assets/styles/bootstrap/customizations.scss';
-@import './Nav.scss';
-@import 'bourbon';
-
-
+$nav-padding: 30px;
 $nav-handle-width: 28px;
 $nav-handle-height: 3px;
 
 .side-bar {
-  // background: transparentize(darken($background-color, 25%), 75%);
-  background-color: darken($background-color, 10);
-  position: fixed;
+  background-color: darken($body-bg, 10);
   right: 0;
   top: 0;
   height: 100vh;
   z-index: 1;
+  position: fixed;
+  transition: width 0.25s ease-out;
+
+  @include media-breakpoint-up(xs) {
+    width: 100vw;
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: 66vw;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 33vw;
+  }
 
   ul {
     list-style: none;
@@ -32,6 +40,7 @@ $nav-handle-height: 3px;
       text-decoration: none;
       opacity: 0.5;
       padding: 2rem;
+      color: $link-color;
 
       &.active {
         opacity: 1;
@@ -51,6 +60,7 @@ $nav-handle-height: 3px;
   }
 
   .nav-button {
+    background: rgba(0,0,0,0);
     border: none;
     color: $link-color;
     font-weight: 200;
@@ -60,8 +70,8 @@ $nav-handle-height: 3px;
 
   .nav-button-text {
     opacity: 1;
-    @include transition(opacity 0.25s);
-    @include selection(true) {
+    transition: opacity 0.25s;
+    ::selection {
       background-color: rgba(0,0,0,0);
     }
   }
@@ -80,13 +90,13 @@ $nav-handle-height: 3px;
       right: 0;
       background: $link-color;
       margin-top: -$nav-handle-height/2;
-      @include transform-origin(50% 50%);
+      transform-origin: 50% 50%;
       width: $nav-handle-width;
       height: $nav-handle-height;
     }
 
     span {
-      @include transition(opacity 0.25s);
+      transition: opacity 0.25s;
     }
 
     &::before,
@@ -97,18 +107,18 @@ $nav-handle-height: 3px;
       height: $nav-handle-height;
       width: $nav-handle-width;
       top: 50%;
-      @include transform-origin(50% 50%);
-      @include transition-property(transform);
-      @include transition-duration(0.25s);
-      @include transition-timing-function(ease-out);
+      transform-origin: 50% 50%;
+      transition-property: transform;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-out;
     }
 
     &::before {
-      @include transform(translate(0, -8px));
+      transform: translate(0, -8px);
     }
 
     &::after {
-      @include transform(translate(0, 8px));
+      transform: translate(0, 8px);
     }
   }
 
@@ -119,11 +129,11 @@ $nav-handle-height: 3px;
 
     .nav-handle {
       &::before {
-        @include transform(rotate(45deg));
+        transform: rotate(45deg);
       }
 
       &::after {
-        @include transform(rotate(-45deg));
+        transform: rotate(-45deg);
       }
 
       & span {

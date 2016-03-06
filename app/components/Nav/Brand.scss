@@ -1,13 +1,13 @@
 $nav-padding: 30px;
 
-.nav {
+.brand {
   display: block;
   position: absolute;
   top: $nav-padding;
   left: $nav-padding;
   z-index: 1;
 
-  .nav-logo {
+  .brand-logo {
     content: url("./SumoCreationsLogo.svg");
     display: block;
     height: 79px;

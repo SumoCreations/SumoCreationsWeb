@@ -1,21 +1,17 @@
-// import { Parse } from 'parse';
-import { createHistory } from 'history';
 import React from 'react';
 import { render } from 'react-dom';
-import { Router } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import routes from './config/routes';
 import reducers from './reducers';
 
 const reducer = combineReducers(Object.assign({}, reducers, {
-  routing: routeReducer
+  routing: routerReducer
 }));
 const store = createStore(reducer);
-const history = createHistory();
-
-syncReduxAndRouter(history, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
   <Provider store={store}>

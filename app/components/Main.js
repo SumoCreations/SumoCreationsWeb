@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import { setNavigationState } from '../config/actions'
 
-import Nav from './Nav/Nav'
+import Brand from './Nav/Brand'
 import SideBar from './Nav/SideBar'
 
 require('./Main.scss');
@@ -13,7 +13,7 @@ class Main extends Component {
     const { dispatch, navigationState } = this.props;
     return (
       <div className="main">
-        <Nav />
+        <Brand />
         <SideBar active={this.props.active} onMenuToggle={() => dispatch(setNavigationState(!navigationState))} active={navigationState} />
         {this.props.children}
       </div>

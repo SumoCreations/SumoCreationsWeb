@@ -2,14 +2,17 @@ import GSAP from 'gsap'
 import React, { Component, PropTypes } from 'react'
 import ReactDOM, { render } from 'react-dom'
 import { Link, IndexLink } from 'react-router'
-
-require('./SideBar.scss')
+import css from './SideBar.scss'
 
 const ACTIVE = 'active';
 
 class SideBar extends Component {
   constructor(props){
     super(props)
+  }
+
+  handleResize(e) {
+    this.toggleSideBar(this.props.active, true)
   }
 
   toggleSideBar(visible=false, animated=false) {
@@ -23,24 +26,29 @@ class SideBar extends Component {
     TweenMax.to(document.body, duration, {x: bodyX, ease: Power3.easeOut})
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.toggleSideBar()
+    window.addEventListener('resize', this.handleResize)
   }
 
-  componentDidUpdate(){
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  componentDidUpdate() {
     this.toggleSideBar(this.props.active, true)
   }
 
   navStyles() {
-    var styles = ['nav-toggle', 'col-md-4']
+    var styles = ['nav-toggle']
     if(this.props.active){
       styles.push('nav-active')
     }
     return styles.join(' ')
   }
 
-  sideBarStyles(){
-    var styles = ['side-bar four columns']
+  sideBarStyles() {
+    var styles = ['side-bar']
     if(this.props.active) {
       styles.push('side-bar-active')
     }
@@ -50,16 +58,16 @@ class SideBar extends Component {
   render() {
     return (
       <nav className={this.sideBarStyles()} role="navigation">
-        <div className={this.navStyles()} ref="toggle">
-          <button className="nav-button nav-button-text" onClick={() => this.props.onMenuToggle()}>Menu</button>
-          <button className="nav-button nav-handle" onClick={() => this.props.onMenuToggle()}><span></span></button>
-        </div>
-        <ul>
-          <li><IndexLink to="/" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Home</IndexLink></li>
-          <li><Link to="/services" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Services</Link></li>
-          <li><Link to="/portfolio" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Portfolio</Link></li>
-          <li><Link to="/training" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Training</Link></li>
-        </ul>
+          <div className={this.navStyles()} ref="toggle">
+            <button className="nav-button nav-button-text" onClick={() => this.props.onMenuToggle()}>Menu</button>
+            <button className="nav-button nav-handle" onClick={() => this.props.onMenuToggle()}><span></span></button>
+          </div>
+          <ul>
+            <li><IndexLink to="/" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Home</IndexLink></li>
+            <li><Link to="/services" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Services</Link></li>
+            <li><Link to="/portfolio" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Portfolio</Link></li>
+            <li><Link to="/training" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Training</Link></li>
+          </ul>
       </nav>
     )
   }
