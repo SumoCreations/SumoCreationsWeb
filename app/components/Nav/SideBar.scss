@@ -1,7 +1,3 @@
-$nav-padding: 30px;
-$nav-handle-width: 28px;
-$nav-handle-height: 3px;
-
 .side-bar {
   background-color: darken($body-bg, 10);
   right: 0;
@@ -12,14 +8,20 @@ $nav-handle-height: 3px;
   transition: width 0.25s ease-out;
 
   @include media-breakpoint-up(xs) {
+    a { font-size: 3rem; padding: 0.5rem; }
     width: 100vw;
   }
 
   @include media-breakpoint-up(sm) {
-    width: 66vw;
+    a { font-size: 4rem; padding: 1rem; }
+  }
+
+  @include media-breakpoint-up(md) {
+    width: 50vw;
   }
 
   @include media-breakpoint-up(xl) {
+    a { font-size: 6rem; padding: 2rem; }
     width: 33vw;
   }
 
@@ -36,108 +38,13 @@ $nav-handle-height: 3px;
 
     a {
       font-weight: normal;
-      font-size: 6rem;
       text-decoration: none;
       opacity: 0.5;
-      padding: 2rem;
       color: $link-color;
 
       &.active {
         opacity: 1;
         font-weight: bold;
-      }
-    }
-  }
-
-  .nav-toggle {
-    display: flex;
-    position: absolute;
-    right: $nav-padding;
-    text-transform: uppercase;
-    text-decoration: none;
-    top: $nav-padding;
-    z-index: 1;
-  }
-
-  .nav-button {
-    background: rgba(0,0,0,0);
-    border: none;
-    color: $link-color;
-    font-weight: 200;
-    padding: 0;
-    margin: 0;
-  }
-
-  .nav-button-text {
-    opacity: 1;
-    transition: opacity 0.25s;
-    ::selection {
-      background-color: rgba(0,0,0,0);
-    }
-  }
-
-  .nav-handle {
-    margin: 0 0 0 10px;;
-    width: $nav-handle-width;
-    height: 30px;
-
-    &::before,
-    &::after,
-    span {
-      display: block;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      background: $link-color;
-      margin-top: -$nav-handle-height/2;
-      transform-origin: 50% 50%;
-      width: $nav-handle-width;
-      height: $nav-handle-height;
-    }
-
-    span {
-      transition: opacity 0.25s;
-    }
-
-    &::before,
-    &::after {
-      position: absolute;
-      content: '';
-      display: block;
-      height: $nav-handle-height;
-      width: $nav-handle-width;
-      top: 50%;
-      transform-origin: 50% 50%;
-      transition-property: transform;
-      transition-duration: 0.25s;
-      transition-timing-function: ease-out;
-    }
-
-    &::before {
-      transform: translate(0, -8px);
-    }
-
-    &::after {
-      transform: translate(0, 8px);
-    }
-  }
-
-  .nav-active {
-    .nav-button-text {
-      opacity: 0;
-    }
-
-    .nav-handle {
-      &::before {
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        transform: rotate(-45deg);
-      }
-
-      & span {
-        opacity: 0;
       }
     }
   }

@@ -1,0 +1,45 @@
+.hamburger-button {
+
+  display: flex;
+  position: absolute;
+  right: $nav-padding;
+  text-transform: uppercase;
+  text-decoration: none;
+  top: $nav-padding;
+  z-index: 1;
+
+  button {
+    background: rgba(0,0,0,0);
+    border: none;
+    color: $link-color;
+    font-weight: 200;
+    padding: 0.5rem 0.25rem;
+    margin: 0;
+  }
+
+  .hamburger-button-text {
+    opacity: 1;
+    transition: opacity 0.25s;
+    ::selection {
+      background-color: rgba(0,0,0,0);
+    }
+  }
+
+  .hamburger-button-target {
+    width: 2.75rem;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+
+    path {
+      stroke: $link-color;
+      stroke-width: 4px;
+      stroke-linecap: square;
+      fill: transparent;
+    }
+  }
+}

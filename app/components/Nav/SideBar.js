@@ -2,6 +2,7 @@ import GSAP from 'gsap'
 import React, { Component, PropTypes } from 'react'
 import ReactDOM, { render } from 'react-dom'
 import { Link, IndexLink } from 'react-router'
+import HamburgerButton from './HamburgerButton.js'
 import css from './SideBar.scss'
 
 const ACTIVE = 'active';
@@ -9,6 +10,7 @@ const ACTIVE = 'active';
 class SideBar extends Component {
   constructor(props){
     super(props)
+    this.resizeListener = (e) => handleResize(e)
   }
 
   handleResize(e) {
@@ -28,23 +30,15 @@ class SideBar extends Component {
 
   componentDidMount() {
     this.toggleSideBar()
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize.bind(this))
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('resize', this.handleResize.bind(this))
   }
 
   componentDidUpdate() {
     this.toggleSideBar(this.props.active, true)
-  }
-
-  navStyles() {
-    var styles = ['nav-toggle']
-    if(this.props.active){
-      styles.push('nav-active')
-    }
-    return styles.join(' ')
   }
 
   sideBarStyles() {
@@ -58,10 +52,7 @@ class SideBar extends Component {
   render() {
     return (
       <nav className={this.sideBarStyles()} role="navigation">
-          <div className={this.navStyles()} ref="toggle">
-            <button className="nav-button nav-button-text" onClick={() => this.props.onMenuToggle()}>Menu</button>
-            <button className="nav-button nav-handle" onClick={() => this.props.onMenuToggle()}><span></span></button>
-          </div>
+          <HamburgerButton active={this.props.active} onClick={this.props.onMenuToggle} ref="toggle" />
           <ul>
             <li><IndexLink to="/" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Home</IndexLink></li>
             <li><Link to="/services" activeClassName={ACTIVE} onClick={() => this.props.onMenuToggle()}>Services</Link></li>
